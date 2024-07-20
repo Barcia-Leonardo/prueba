@@ -24,6 +24,11 @@ public class DeckCardTest {
 //        // Crear una instancia de DeckCard con las cartas simuladas
 //        deckCard = new DeckCard(cards);
 //    }
+    @BeforeEach
+    public void setUp() {
+        cards = new ArrayList<>();
+        deckCard = new DeckCard(cards);
+    }
 
     @Test
     public void testDeckCard() {
