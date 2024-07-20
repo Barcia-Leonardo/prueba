@@ -1,0 +1,49 @@
+@startuml
+start
+:Seleccionar nivel de dificultad;
+:Elegir opción de ganar por valores totales;
+if (¿Ganar por valores totales?) then (Sí)
+  :Ingresar monto;
+endif
+:Asignar dinero inicial a los jugadores;
+:Todos los jugadores inician desde la salida;
+:Lanzar dados para determinar el orden;
+:Asignar turnos según el valor de los dados;
+:Movimiento en el tablero;
+:Lanzar dados;
+:Mover jugador según el resultado;
+if (Cae en propiedad no adquirida) then (Sí)
+  :Ofrecer opción de compra;
+else (No)
+  if (Dados iguales) then (Sí)
+    :Permitir hasta dos lanzamientos adicionales;
+    if (Dados iguales por tercera vez) then (Sí)
+      :Ir a la cárcel;
+    endif
+  endif
+  :Pagar alquiler automáticamente si cae en propiedad adquirida;
+endif
+:Compra y venta de propiedades;
+if (Comprar propiedad) then (Sí)
+  :Comprar propiedad;
+endif
+if (Vender propiedad al banco) then (Sí)
+  :Vender propiedad al banco;
+endif
+if (Opcional: Vender a otros jugadores) then (Sí)
+  :Vender a otros jugadores;
+endif
+:Construcción de mejoras;
+:Permitir construcción de mejoras;
+:Gestión financiera;
+:Finalización del juego;
+if (Jugador acumula cantidad determinada de dinero) then (Sí)
+  :Mostrar mensaje indicando al ganador;
+  stop
+else (No)
+  if (Todos los demás jugadores en bancarrota) then (Sí)
+    :Mostrar mensaje indicando al ganador;
+    stop
+  endif
+endif
+@enduml

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!-- Configuración de la conexión a H2 en memoria -->
+        <property name="hibernate.connection.driver_class">org.h2.Driver</property>
+        <property name="hibernate.connection.url">jdbc:h2:mem:testdb</property>
+        <property name="hibernate.connection.username">sa</property>
+        <property name="hibernate.connection.password"></property>
+
+        <!-- Configuración de dialecto H2 -->
+        <property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
+
+        <!-- Configuración del modo de generación de la base de datos -->
+        <property name="hibernate.hbm2ddl.auto">create-drop</property>
+
+        <!-- Configuración de las clases de entidad -->
+        <mapping class="entities.bankEntity"/>
+        <mapping class="entities.boardEntity"/>
+        <mapping class="entities.boxEntity"/>
+        <mapping class="entities.cardEntity"/>
+        <mapping class="entities.diceEntity"/>
+        <mapping class="entities.difficultyEntity"/>
+        <mapping class="entities.pawnEntity"/>
+        <mapping class="entities.playerEntity"/>
+        <mapping class="entities.provinceEntity"/>
+        <mapping class="entities.turnEntity"/>
+        <mapping class="entities.typeBoxEntity"/>
+        <mapping class="entities.typeCardEntity"/>
+        <mapping class="entities.typePlayerEntity"/>
+        <mapping class="entities.typePropertyEntity"/>
+        <mapping class="entities.typeUpgradeEntity"/>
+        <mapping class="entities.userEntity"/>
+        <mapping class="entities.zoneEntity"/>
+        <mapping class="entities.propertyEntity"/>
+        <mapping class="entities.matchEntity"/>
+
+        <!-- Agrega aquí las demás clases de entidad que quieras mapear -->
+
+    </session-factory>
+</hibernate-configuration>
