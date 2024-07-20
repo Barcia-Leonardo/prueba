@@ -132,11 +132,6 @@ public class MatchMenu {
             }
         }
     }
-    private IntSupplier getValidNumberSupplier = () -> getValideNumber("[0-2]", "0 al 2");
-
-    public void setGetValidNumberSupplier(IntSupplier supplier) {
-        this.getValidNumberSupplier = supplier;
-    }
 
     public boolean playGame() {
         for (Player playerTurn : match.getPlayers()) {

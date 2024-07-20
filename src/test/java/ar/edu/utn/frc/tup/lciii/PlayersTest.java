@@ -43,4 +43,37 @@ public class PlayersTest {
     public void testToString() {
         assertEquals("John", player.toString());
     }
+
+    @Test
+    public void testSetPrisonTurns() {
+        player.setPrisonTurns(2);
+        assertEquals(2, player.getPrisonTurns());
+    }
+
+    @Test
+    public void testGetPrisonTurns() {
+        player.setPrisonTurns(2);
+        assertEquals(2, player.getPrisonTurns());
+    }
+
+    @Test
+    public void testDecrementPrisonTurnsWhenGreaterThanZero() {
+        player.setPrisonTurns(3);
+        player.decrementPrisonTurns();
+        assertEquals(2, player.getPrisonTurns());
+    }
+
+    @Test
+    public void testDecrementPrisonTurnsWhenZero() {
+        player.setPrisonTurns(0);
+        player.decrementPrisonTurns();
+        assertEquals(0, player.getPrisonTurns());
+    }
+
+    @Test
+    public void testDecrementPrisonTurnsWhenNegative() {
+        player.setPrisonTurns(-1);
+        player.decrementPrisonTurns();
+        assertEquals(-1, player.getPrisonTurns());
+    }
 }

@@ -13,29 +13,12 @@ import java.util.regex.Pattern;
 
 public class PlayerGame implements Serializable {
 
-    private Integer score;
-    private Integer gamesWon;
     private Integer money;
     private List<Property> properties;
     private List<Player> players;
     private Integer patrimony;
 
 
-    public Integer getScore() {
-        return score;
-    }
-
-    public void setScore(Integer score) {
-        this.score = score;
-    }
-
-    public Integer getGamesWon() {
-        return gamesWon;
-    }
-
-    public void setGamesWon(Integer gamesWon) {
-        this.gamesWon = gamesWon;
-    }
 
     public Integer getMoney() {
         return money;
@@ -79,70 +62,51 @@ public class PlayerGame implements Serializable {
 
     public void accionPropertyBuy(Property property, Scanner scanner, TypePlayer typePlayer) {
         if (property != null) {
-
             if (typePlayer == TypePlayer.AGGRESSIVE || typePlayer == TypePlayer.BALANCED || typePlayer == TypePlayer.CONSERVATIVE) {
                 Player botPlayer = findBotPlayerByType(typePlayer, players);
                 boolean decision = false;
+
                 switch (typePlayer) {
                     case AGGRESSIVE:
-                        Aggresive aggresiveBot = (Aggresive) botPlayer;
-                        if (aggresiveBot != null) {
-                            decision = aggresiveBot.purchaseDecision(property, BigDecimal.valueOf(getMoney().intValue()));
-                        } else {//borrar
-                            System.out.println("El jugador agresivo no está inicializado correctamente.");
-                        }
+                        Aggresive aggressiveBot = (Aggresive) botPlayer;
+                        decision = aggressiveBot != null && aggressiveBot.purchaseDecision(property, BigDecimal.valueOf(getMoney().intValue()));
                         break;
                     case BALANCED:
                         Balanced balancedBot = (Balanced) botPlayer;
-                        if (balancedBot != null) {
-                            decision = balancedBot.purchaseDecision(property, BigDecimal.valueOf(getMoney().intValue()));
-                        } else {
-                            System.out.println("El jugador balanceado no está inicializado correctamente.");
-                        }
+                        decision = balancedBot != null && balancedBot.purchaseDecision(property, BigDecimal.valueOf(getMoney().intValue()));
                         break;
                     case CONSERVATIVE:
                         Conservative conservativeBot = (Conservative) botPlayer;
-                        if (conservativeBot != null) {
-                            decision = conservativeBot.purchaseDecision(property, BigDecimal.valueOf(getMoney().intValue()));
-                        } else {
-                            System.out.println("El jugador conservador no está inicializado correctamente.");
-                        }
+                        decision = conservativeBot != null && conservativeBot.purchaseDecision(property, BigDecimal.valueOf(getMoney().intValue()));
                         break;
                     default:
                         break;
                 }
 
-                if (decision) {
-                    int propertyValue = property.getValue();
-                    if (getMoney().compareTo(propertyValue) >= 0) {
-                        payMoney(propertyValue);
-                        addProperty(property);
-                        setPatrimony(getMoney());
-                        for (Property prop : properties) {
-                            addPatrimony(prop.getValue());
-                        }
-                        System.out.println("¡Felicidades! Has comprado la propiedad.");
-
-                    } else {
-                        System.out.println("No tienes suficiente dinero para comprar esta propiedad.");
+                if (decision && getMoney().compareTo(property.getValue()) >= 0) {
+                    payMoney(property.getValue());
+                    addProperty(property);
+                    setPatrimony(getMoney());
+                    for (Property prop : properties) {
+                        addPatrimony(prop.getValue());
                     }
+                    System.out.println("¡Felicidades! Has comprado la propiedad.");
+                } else if (decision) {
+                    System.out.println("No tienes suficiente dinero para comprar esta propiedad.");
                 }
             } else {
                 System.out.println("¿Deseas comprar esta propiedad? (Y/N)");
                 String decision = scanner.nextLine();
-                if (decision.equalsIgnoreCase("Y")) {
-                    int propertyValue = property.getValue();
-                    if (getMoney().compareTo(propertyValue) >= 0) {
-                        payMoney(propertyValue);
-                        addProperty(property);
-                        setPatrimony(getMoney());
-                        for (Property prop : properties) {
-                            addPatrimony(prop.getValue());
-                        }
-                        System.out.println("¡Felicidades! Has comprado la propiedad.");
-                    } else {
-                        System.out.println("No tienes suficiente dinero para comprar esta propiedad.");
+                if (decision.equalsIgnoreCase("Y") && getMoney().compareTo(property.getValue()) >= 0) {
+                    payMoney(property.getValue());
+                    addProperty(property);
+                    setPatrimony(getMoney());
+                    for (Property prop : properties) {
+                        addPatrimony(prop.getValue());
                     }
+                    System.out.println("¡Felicidades! Has comprado la propiedad.");
+                } else if (decision.equalsIgnoreCase("Y")) {
+                    System.out.println("No tienes suficiente dinero para comprar esta propiedad.");
                 }
             }
         }

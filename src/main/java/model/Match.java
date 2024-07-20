@@ -152,7 +152,7 @@ public class Match implements Serializable {
         }
     }
 
-    private void accionPrisonAction(Player currentPlayer) {
+    public void accionPrisonAction(Player currentPlayer) {
             currentPlayer.getPawn().setActive(false);
             LetterByLetterPrinter.println("Ha caido en prision. Marche preso directamente.");
             currentPlayer.getPawn().setPosition(14);
@@ -224,7 +224,7 @@ public class Match implements Serializable {
         LetterByLetterPrinter.println("Salida");
     }
 
-    private void accionFreeAction(Integer position) {
+    public void accionFreeAction(Integer position) {
         if(position.equals(14)){
             LetterByLetterPrinter.println("Ha caido en la comisaria. Aqui descansan los presos");
         } else if (position.equals(28)) {

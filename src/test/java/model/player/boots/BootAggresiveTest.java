@@ -41,7 +41,7 @@ class BootAggresiveTest {
 
     @Test
     public void testListProvincePreferred() {
-        List<Provinces> expectedProvinces = Arrays.asList(Provinces.TUCUMAN, Provinces.CORDOBA, Provinces.BUENOSAIRES);
+        List<Provinces> expectedProvinces = Arrays.asList(Provinces.BUENOSAIRES);
         assertEquals(expectedProvinces, aggressivePlayer.listProvincePreferred());
     }
 

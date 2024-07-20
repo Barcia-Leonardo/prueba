@@ -26,7 +26,7 @@ class PropertyTest {
     @Test
     void testViewProperty() {
         Property property = new Property(Provinces.BUENOSAIRES, Zone.CENTRO, 5000, 500, TypeProperty.ESCRITURA, TypeUpgradePropertyEnum.VACIA);
-        String expectedView = "Property: BUENOSAIRES CENTRO | Value: 5000 | Rent: 500 | Description: Propiedad en Buenos Aires, Zona CENTRO | Type Property: Escritura";
+        String expectedView = "Property: BUENOSAIRES CENTRO | Value: 5000 | Rent: 500 | Description: Propiedad en Buenos Aires, Zona CENTRO | Type Property: Escritura | Mejora: VACIA";
         assertEquals(expectedView, property.viewProperty());
     }
 

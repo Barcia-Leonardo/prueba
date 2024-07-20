@@ -7,8 +7,14 @@ import model.player.TypePlayer;
 import model.support.Difficulty;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -18,6 +24,7 @@ public class MatchMenuTest {
     private MatchMenu matchMenu;
     private Scanner scannerMock;
     private Match matchMock;
+    private Player player;
 
     @BeforeEach
     public void setUp() throws NoSuchFieldException, IllegalAccessException {
@@ -30,6 +37,12 @@ public class MatchMenuTest {
         scannerField.set(matchMenu, scannerMock);
 
         matchMenu.setMatch(matchMock);
+
+        player = new Player("John Doe", TypePlayer.HUMAN, 0, new Pawn(0, 35000, true), Arrays.asList());
+        Pawn mockPawn = Mockito.mock(Pawn.class);
+        Mockito.when(mockPawn.getPosition()).thenReturn(5);
+        player.setPawn(mockPawn);
+
     }
 
     @Test
@@ -144,5 +157,42 @@ public class MatchMenuTest {
         when(scannerMock.next()).thenReturn("0");
 
         matchMenu.askForDecision(player);
+    }
+
+    @Test
+    public void testMostrarPosiciones() {
+      ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStreamCaptor));
+        player.getPawn().mostrarPosicion();
+        assertTrue(outputStreamCaptor.toString().isEmpty());
+        System.setOut(System.out);
+    }
+
+    @Test
+    public void testMostrarPropiedadesJugadores() {
+
+        ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStreamCaptor));
+        player.getPlayerGame().getProperties();
+        assertFalse(!outputStreamCaptor.toString().isEmpty());
+        System.setOut(System.out);
+    }
+
+    @Test
+    public void testPrintPlayersInfo_NullList() {
+        List<Player> players = new ArrayList<>();
+
+        assertDoesNotThrow(() -> {
+            matchMenu.printPlayersInfo(players);
+        });
+    }
+
+    @Test
+    public void testPrintPlayersInfo_EmptyList() {
+        List<Player> players = new ArrayList<>();
+
+        assertDoesNotThrow(() -> {
+            matchMenu.printPlayersInfo(players);
+        });
     }
 }
