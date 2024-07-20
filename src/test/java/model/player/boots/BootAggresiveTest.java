@@ -35,13 +35,13 @@ class BootAggresiveTest {
         tucumanProperty = new Property(Provinces.TUCUMAN, Zone.NORTE, 5400, 450, TypeProperty.ESCRITURA, TypeUpgradePropertyEnum.CHACRA);
         cordobaProperty = new Property(Provinces.CORDOBA, Zone.CENTRO, 5000, 450, TypeProperty.ESCRITURA, TypeUpgradePropertyEnum.CHACRA);
         buenosAiresProperty = new Property(Provinces.BUENOSAIRES, Zone.NORTE, 7500, 1000,TypeProperty.ESCRITURA, TypeUpgradePropertyEnum.CHACRA);
-        ferrocarrilProperty = new Property();
-        companiaProperty = new Property();
+        ferrocarrilProperty = new Property(Provinces.FERROCARRIL, Zone.SUR, 5500, 1000,TypeProperty.FERROCARRIL, TypeUpgradePropertyEnum.VACIA);
+        companiaProperty = new Property(Provinces.COMPANY, Zone.SUR, 5500, 1000,TypeProperty.COMPAÑIA, TypeUpgradePropertyEnum.VACIA);
     }
 
     @Test
     public void testListProvincePreferred() {
-        List<Provinces> expectedProvinces = Arrays.asList(Provinces.BUENOSAIRES);
+        List<Provinces> expectedProvinces = Arrays.asList(Provinces.TUCUMAN,Provinces.CORDOBA,Provinces.BUENOSAIRES);
         assertEquals(expectedProvinces, aggressivePlayer.listProvincePreferred());
     }
 

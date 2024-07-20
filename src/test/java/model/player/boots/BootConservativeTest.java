@@ -1,10 +1,9 @@
 package model.player.boots;
 
-import model.board.Pawn;
-import model.board.Property;
-import model.board.Provinces;
+import model.board.*;
 import model.player.Conservative;
 import model.player.TypePlayer;
+import model.support.Zone;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -29,12 +28,12 @@ class BootConservativeTest {
     @Test
     void purchaseDecision() {
         Conservative conservative = new Conservative("TestPlayer", TypePlayer.CONSERVATIVE, 1, new Pawn(), new ArrayList<>());
-        Property property = new Property("TestProperty", Provinces.FORMOSA, BigDecimal.valueOf(1000));
+        Property property = new Property(Provinces.FORMOSA, Zone.SUR, 1000, 100, TypeProperty.ESCRITURA, TypeUpgradePropertyEnum.VACIA);
 
         boolean decision = conservative.purchaseDecision(property, BigDecimal.valueOf(5000));
         Assertions.assertTrue(decision);
 
-        property = new Property("TestProperty2", Provinces.BUENOSAIRES, BigDecimal.valueOf(2000));
+        property = new Property(Provinces.BUENOSAIRES, Zone.SUR, 2000, 200, TypeProperty.ESCRITURA, TypeUpgradePropertyEnum.VACIA);
         decision = conservative.purchaseDecision(property, BigDecimal.valueOf(5000));
         Assertions.assertFalse(decision);
     }

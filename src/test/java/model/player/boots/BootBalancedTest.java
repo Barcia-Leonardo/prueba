@@ -28,17 +28,14 @@ class BootBalancedTest {
     void purchaseDecision() {
         Balanced balanced =new Balanced ("TestPlayer", TypePlayer.BALANCED, 1, new Pawn(), new ArrayList<>());
 
-        // Test when property is in preferred provinces
-        Property propertyPreferred = new Property("TestProperty", Provinces.FORMOSA, BigDecimal.valueOf(1000), TypeProperty.ESCRITURA);
+        Property propertyPreferred = new Property("TestProperty", Provinces.MENDOZA, BigDecimal.valueOf(1000), TypeProperty.ESCRITURA);
         boolean decisionPreferred = balanced.purchaseDecision(propertyPreferred, BigDecimal.valueOf(5000));
         Assertions.assertTrue(decisionPreferred);
 
-        // Test when property type is FERROCARRIL
         Property propertyRailroad = new Property("Railroad", Provinces.FORMOSA, BigDecimal.valueOf(2000), TypeProperty.FERROCARRIL);
         boolean decisionRailroad = balanced.purchaseDecision(propertyRailroad, BigDecimal.valueOf(5000));
         Assertions.assertTrue(decisionRailroad);
 
-        // Test when property is not in preferred provinces and not a FERROCARRIL
         Property propertyNotPreferred = new Property("TestProperty2", Provinces.BUENOSAIRES, BigDecimal.valueOf(2000), TypeProperty.ESCRITURA);
         boolean decisionNotPreferred = balanced.purchaseDecision(propertyNotPreferred, BigDecimal.valueOf(5000));
         Assertions.assertFalse(decisionNotPreferred);

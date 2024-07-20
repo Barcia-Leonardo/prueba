@@ -49,11 +49,28 @@ public class Property implements Serializable {
     }
 
     public Property(String testProperty, Provinces provinces, BigDecimal bigDecimal) {
+        this.description = testProperty;
+        this.province = provinces;
+        this.value = bigDecimal.intValue();
+        // Inicializa otros campos según sea necesario
+        this.rentValue = 0; // o cualquier valor por defecto que desees
+        this.typeProperty = TypeProperty.ESCRITURA; // o cualquier valor por defecto que desees
+        this.typeUpgradeProperty = TypeUpgradePropertyEnum.VACIA; // o cualquier valor por defecto que desees
+        this.zone = Zone.SUR; // o cualquier valor por defecto que desees
+        this.isOwned = false;
     }
 
     public Property(String testProperty, Provinces provinces, BigDecimal bigDecimal, TypeProperty typeProperty) {
+        this.description = testProperty;
+        this.province = provinces;
+        this.value = bigDecimal.intValue();
+        this.typeProperty = typeProperty;
+        // Inicializa otros campos según sea necesario
+        this.rentValue = 0; // o cualquier valor por defecto que desees
+        this.typeUpgradeProperty = TypeUpgradePropertyEnum.VACIA; // o cualquier valor por defecto que desees
+        this.zone = Zone.SUR; // o cualquier valor por defecto que desees
+        this.isOwned = false;
     }
-
     public Integer getValue() {
         return value;
     }

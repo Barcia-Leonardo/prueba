@@ -20,7 +20,7 @@ public class Conservative extends Player implements Serializable {
         List<Provinces> preferredProvinces = new ArrayList<>();
         for (Provinces provinces : Provinces.values()) {
             if(provinces.getNameProvinces().equals("Formosa") ||
-              provinces.getNameProvinces().equals("Rio Negro") ||
+              provinces.getNameProvinces().equals("Río Negro") ||
               provinces.getNameProvinces().equals("Salta")){
                 preferredProvinces.add(provinces);
             }

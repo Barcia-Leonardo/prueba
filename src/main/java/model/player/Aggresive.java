@@ -60,8 +60,8 @@ public class Aggresive extends Player implements Serializable {
     public List<Provinces> listProvincePreferred(){
         List<Provinces> preferredProvinces = new ArrayList<>();
         for (Provinces provinces : Provinces.values()) {
-            if(provinces.getNameProvinces().equals("Tucuman") ||
-                    provinces.getNameProvinces().equals("Cordoba") ||
+            if(provinces.getNameProvinces().equals("Tucumán") ||
+                    provinces.getNameProvinces().equals("Córdoba") ||
                     provinces.getNameProvinces().equals("Buenos Aires")){
                 preferredProvinces.add(provinces);
             }
