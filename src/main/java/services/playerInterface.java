@@ -1,6 +1,9 @@
 package services;
 
 import model.player.TypePlayer;
+import model.support.Turn;
+
+import java.lang.reflect.Type;
 
 /**
  * Esta interfaz define el contrato para los jugadores en el juego.

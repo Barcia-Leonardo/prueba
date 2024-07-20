@@ -15,5 +15,4 @@ public class typePropertyEntity {
 
     @Column
     private String type_property;
-
 }

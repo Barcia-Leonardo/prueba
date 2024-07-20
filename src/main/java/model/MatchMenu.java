@@ -1,6 +1,6 @@
 package model;
 
-import ar.edu.utn.frc.tup.lciii.MainMenu;
+
 import model.board.*;
 import model.player.Player;
 import model.player.TypePlayer;
@@ -109,7 +109,7 @@ public class MatchMenu {
         return answer;
     }
 
-    private Boolean getYesNoAnswer(String input) {
+    public Boolean getYesNoAnswer(String input) {
         Pattern pattern = Pattern.compile(YES_NO_REGEX);
         Matcher matcher = pattern.matcher(input);
         if (matcher.matches()) {

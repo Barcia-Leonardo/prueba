@@ -25,7 +25,9 @@ public class DeckCard {
 
         public cardInterface takeOutCard() {
             if (!stackCards.isEmpty()) {
-                return stackCards.pop();
+                cardInterface card = stackCards.pop();
+
+                return card;
             }
             return null;
         }
