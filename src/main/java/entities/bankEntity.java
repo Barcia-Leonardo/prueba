@@ -25,19 +25,19 @@ public class bankEntity {
     @Column
     private double money;
 
-//    public double getMoney() {
-//        return money;
-//    }
-//
-//    public void setMoney(double money) {
-//        this.money = money;
-//    }
-//
-//    public List<propertyEntity> getProperties() {
-//        return propertyList;
-//    }
-//
-//    public void setProperties(List<propertyEntity> properties) {
-//        this.propertyList = properties;
-//    }
+    public double getMoney() {
+        return money;
+    }
+
+    public void setMoney(double money) {
+        this.money = money;
+    }
+
+    public List<propertyEntity> getProperties() {
+        return propertyList;
+    }
+
+    public void setProperties(List<propertyEntity> properties) {
+        this.propertyList = properties;
+    }
 }

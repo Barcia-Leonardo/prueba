@@ -15,15 +15,19 @@ public class DeckCardTest {
     private DeckCard deckCard;
     private List<cardInterface> cards;
 
-    @BeforeEach
-    public void setUp() {
-        cards = new ArrayList<>();
-        deckCard = new DeckCard(cards);
-    }
-
+//    @BeforeEach
+//    public void setUp() {
+//
+//        // Crear una lista de cartas simuladas para el mazo
+//        cards = new ArrayList<>(Destination.crearListaDestino());
+//
+//        // Crear una instancia de DeckCard con las cartas simuladas
+//        deckCard = new DeckCard(cards);
+//    }
 
     @Test
     public void testDeckCard() {
+
         assertNotNull(deckCard);
     }
 
@@ -34,16 +38,22 @@ public class DeckCardTest {
         assertEquals(cards.size(), stackCards.size());
         assertTrue(stackCards.containsAll(cards));
     }
+
     @Test
     public void testTakeOutCard() {
+
+
+
         cardInterface card = deckCard.takeOutCard();
         assertNotNull(card);
-        assertFalse(deckCard.getStackCards().contains(card));
         assertTrue(cards.contains(card));
+        assertFalse(deckCard.getStackCards().contains(card));
     }
 
     @Test
     public void testShuffleCards() {
+
+
         List<cardInterface> originalCards = new ArrayList<>(cards);
         deckCard.shuffleCards();
         assertNotEquals(originalCards, deckCard.getStackCards());

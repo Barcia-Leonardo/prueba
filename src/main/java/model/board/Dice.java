@@ -13,7 +13,7 @@ import java.util.Random;
 public class Dice {
 
     /** El número de caras del dado. */
-//    private int side;
+    private int side;
 
     /** El resultado del primer dado. */
     private int diceOne;
@@ -30,10 +30,10 @@ public class Dice {
      * @param diceOne Valor inicial para el primer dado.
      * @param diceTwo Valor inicial para el segundo dado.
      */
-//    public Dice(int diceOne, int diceTwo) {
-//        this.diceOne = diceOne;
-//        this.diceTwo = diceTwo;
-//    }
+    public Dice(int diceOne, int diceTwo) {
+        this.diceOne = diceOne;
+        this.diceTwo = diceTwo;
+    }
 
     /**
      * Constructor por defecto que inicializa los dados con valores aleatorios entre 1 y 6.

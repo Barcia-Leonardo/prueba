@@ -6,24 +6,32 @@ import model.player.Player;
 import model.player.PlayerGame;
 import model.player.TypePlayer;
 import model.support.Difficulty;
+import model.board.Provinces;
+import model.board.TypeProperty;
+import model.board.TypeUpgradePropertyEnum;
 import model.support.Zone;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 
 class MatchTest {
 
     private Match match;
     private Player humanPlayer;
+    private Scanner scannerMock;
 
     @BeforeEach
     void setUp() {
         match = new Match();
         humanPlayer = new Player("Human Player", TypePlayer.HUMAN, 0, new Pawn(0, 35000, true), null);
+
+        scannerMock = new Scanner(System.in);
     }
 
     @Test
@@ -62,24 +70,6 @@ class MatchTest {
         assertEquals(TypePlayer.AGGRESSIVE, players.get(4).getTypePlayer());
     }
 
-//    @Test
-//    void testSetTurns() {
-//        Player player1 = mock(Player.class);
-//        Player player2 = mock(Player.class);
-//        Player player3 = mock(Player.class);
-//
-//        when(player1.getplayerName()).thenReturn("Player 1");
-//        when(player2.getplayerName()).thenReturn("Player 2");
-//        when(player3.getplayerName()).thenReturn("Player 3");
-//
-//        match.setPlayers(List.of(player1, player2, player3));
-//        match.setTurns();
-//
-//        verify(player1, atLeastOnce()).setTurn(anyInt());
-//        verify(player2, atLeastOnce()).setTurn(anyInt());
-//        verify(player3, atLeastOnce()).setTurn(anyInt());
-//    }
-
     @Test
     void testMovePlayerOnBoard() {
         Pawn pawn = new Pawn(0, 35000, true);
@@ -93,22 +83,6 @@ class MatchTest {
         assertEquals(0, pawn.getPosition());
     }
 
-//    @Test
-//    void testExecuteBox_Property() {
-//        Property property = mock(Property.class);
-//        when(property.viewProperty()).thenReturn("Property Test");
-//
-//        Player currentPlayer = mock(Player.class);
-//        PlayerGame playerGame = mock(PlayerGame.class);
-//        when(currentPlayer.getPlayerGame()).thenReturn(playerGame);
-//        when(currentPlayer.getTypePlayer()).thenReturn(TypePlayer.HUMAN);
-//
-//        match.getBoard().getBoxes().set(0, property);
-//        match.executeBox(0, currentPlayer);
-//
-//        verify(playerGame).accionPropertyBuy(eq(property), any(), eq(TypePlayer.HUMAN));
-//    }
-    
     @Test
     void testPropertiesAvailableForUpgrade(){
         Match match = new Match();
@@ -138,4 +112,5 @@ class MatchTest {
         assertNotNull(propertiesToUpgrade);
         assertEquals(0, propertiesToUpgrade.size());
     }
+    
 }
