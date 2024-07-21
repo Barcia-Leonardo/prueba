@@ -19,6 +19,9 @@ public class MainMenu {
     public MainMenu() {
         this.matchMenu = new MatchMenu();
     }
+    public MainMenu(MatchMenu matchMenu) {
+        this.matchMenu = matchMenu != null ? matchMenu : new MatchMenu();
+    }
 
     public void showMenu() {
         boolean salir = false;
