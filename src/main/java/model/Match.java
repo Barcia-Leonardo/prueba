@@ -224,7 +224,7 @@ public class Match implements Serializable {
         LetterByLetterPrinter.println("Salida");
     }
 
-    public void accionFreeAction(Integer position) {
+    private void accionFreeAction(Integer position) {
         if(position.equals(14)){
             LetterByLetterPrinter.println("Ha caido en la comisaria. Aqui descansan los presos");
         } else if (position.equals(28)) {
