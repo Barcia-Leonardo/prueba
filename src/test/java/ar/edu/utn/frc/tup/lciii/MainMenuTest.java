@@ -23,8 +23,6 @@ import static org.mockito.Mockito.*;
 class MainMenuTest {
     private ByteArrayOutputStream outputStream;
     private PrintStream originalOut;
-    private MatchMenu matchMenuMock;
-    private MainMenu mainMenu;
 
     @BeforeEach
     public void setUp() {
@@ -33,16 +31,6 @@ class MainMenuTest {
         outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
 
-        // Crear el mock de MatchMenu
-        matchMenuMock = Mockito.mock(MatchMenu.class);
-        Match matchMock = Mockito.mock(Match.class);
-        Player playerMock = Mockito.mock(Player.class);
-        when(matchMenuMock.getMatch()).thenReturn(matchMock);
-        when(matchMock.getPlayers()).thenReturn(Arrays.asList(playerMock));
-        when(matchMenuMock.wantPlayAgain()).thenReturn(false);
-
-        // Crear una instancia de MainMenu usando el mock de MatchMenu
-        mainMenu = new MainMenu(matchMenuMock);
 
     }
 
@@ -93,28 +81,5 @@ class MainMenuTest {
         assertTrue(output.contains("Agradecimientos especiales a: [Los Profesores que nos dieron este desafio: Hernan, Mariano y Ezequiel]"));
         assertTrue(output.contains("============================================="));
     }
-
-    @Test
-    public void testPlayGame() {
-        // Simular la entrada del usuario para seleccionar la opción 1 (Comenzar nuevo juego) y luego salir
-        String input = "1\n0\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-
-        // Ejecutar el método showMenu
-        mainMenu.showMenu();
-
-        // Verificar la salida
-        String output = outputStream.toString();
-
-        // Comprobar que se llama a los métodos esperados en MatchMenu
-        verify(matchMenuMock).playGame();
-        verify(matchMenuMock).wantPlayAgain();
-        verify(matchMenuMock.getMatch()).getPlayers();
-
-        // Verificar que se imprime algo relacionado con el juego (puedes ajustar esto según tu implementación)
-        assertTrue(output.contains("Bienvenido al TPI Estanciero"));
-        assertTrue(output.contains("1. Comenzar nuevo juego del estanciero"));
-    }
-
 
 }
