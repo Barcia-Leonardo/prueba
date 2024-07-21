@@ -47,8 +47,6 @@ public class DeckCardTest {
     @Test
     public void testTakeOutCard() {
 
-
-
         cardInterface card = deckCard.takeOutCard();
         assertNotNull(card);
         assertTrue(cards.contains(card));
