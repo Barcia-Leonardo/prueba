@@ -149,19 +149,20 @@ class MatchTest {
         assertEquals(14, currentPlayer.getPawn().getPosition());
     }
 
-//    @Test
-//    public void testPrisonTurn() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-//        match.setDifficulty(Difficulty.FACIL, humanPlayer);
-//        match.setTurns();
-//        Player currentPlayer = match.getPlayers().get(0);
-//        match.executeBox(7, currentPlayer);
-//        match.accionPrisonAction(currentPlayer);
-//
-//        Method method = match.getClass().getDeclaredMethod("PrisonTurn", Player.class);
-//        method.setAccessible(true);
-//        method.invoke(match, currentPlayer);
-//        assertEquals(0, currentPlayer.getPrisonTurns());
-//    }
+    @Test
+    public void testPrisonTurn() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        match.setDifficulty(Difficulty.FACIL, humanPlayer);
+        match.setTurns();
+        Player currentPlayer = match.getPlayers().get(0);
+        match.executeBox(7, currentPlayer);
+        match.accionPrisonAction(currentPlayer);
+
+        Method method = match.getClass().getDeclaredMethod("PrisonTurn", Player.class);
+        method.setAccessible(true);
+        method.invoke(match, currentPlayer);
+        assertEquals(0, currentPlayer.getPrisonTurns());
+    }
+
     @Test
     public void testAccionFreeAction() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         match.setDifficulty(Difficulty.FACIL, humanPlayer);
@@ -169,9 +170,9 @@ class MatchTest {
         Player currentPlayer = match.getPlayers().get(0);
         match.executeBox(14, currentPlayer);
 
-        Method method = match.getClass().getDeclaredMethod("accionFreeAction", Player.class);
+        Method method = match.getClass().getDeclaredMethod("accionFreeAction", Integer.class);
         method.setAccessible(true);
-        method.invoke(match, currentPlayer);
+        method.invoke(match, currentPlayer.getPawn().getPosition());
     }
 
     @Test
